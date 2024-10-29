@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class MoveThirdPersonCamera : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class MoveThirdPersonCamera : MonoBehaviour
 
     bool grounded;
 
-
+    // Making sure character doesnt fall over
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -28,23 +29,28 @@ public class MoveThirdPersonCamera : MonoBehaviour
 
     void Update()
     {
+        // Get keyboard input
         float hInput = Input.GetAxisRaw("Horizontal");
         float vInput = Input.GetAxisRaw("Vertical");
 
         Vector3 forwardVector = new Vector3(camera.forward.x, 0f, camera.forward.z).normalized;
         Vector3 rightVector = new Vector3(camera.right.x, 0f, camera.right.z).normalized;
 
+        // Vector describing how much we want to move
         Vector3 moveVector = (forwardVector * vInput) + (rightVector * hInput);
 
+        // Avoid speedy diagonals
         if (moveVector.magnitude > 1) ;
             moveVector = moveVector.normalized;
 
         moveVector *= moveSpeed;
 
+        // Checking if character is on the ground
         grounded = Physics.Raycast(transform.position, Vector3.down, (playerHeight * 0.5f) + 0.2f, whatIsGround);
 
         float verticalSpeed = rb.linearVelocity.y;
 
+        // Move Character and ground
         if (grounded)
             rb.linearVelocity = new Vector3(moveVector.x, verticalSpeed, moveVector.z);
 

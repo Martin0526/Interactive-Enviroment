@@ -32,17 +32,22 @@ public class LookFirstPersonCamera : MonoBehaviour
 
     void Update()
     {
+        // Create usable mouse movement inputs
         float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
         float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
 
         yRotation += mouseX;
         xRotation -= mouseY;
 
+        //Prevent camera turning upside down by clamping it
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
+        //Set rotation of camera and character
         transform.eulerAngles = new Vector3(0f, yRotation, 0f);
         camera.eulerAngles = new Vector3(xRotation, yRotation, 0f);
 
+
+        // Move camera
         Vector3 cameraTargetPosition = transform.position + (Vector3.up * eyeHeight);
         camera.position = Vector3.Lerp(camera.position, cameraTargetPosition, 0.5f);
     }

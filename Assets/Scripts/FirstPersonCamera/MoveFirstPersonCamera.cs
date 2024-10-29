@@ -1,6 +1,8 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
+
+// Creates components if they are not present
 [RequireComponent(typeof(CapsuleCollider))]
 [RequireComponent(typeof(Rigidbody))]
 public class MoveFirstPersonCamera : MonoBehaviour
@@ -26,19 +28,23 @@ public class MoveFirstPersonCamera : MonoBehaviour
 
     void Update()
     {
+
+        //Get keyboard Input
         float hInput = Input.GetAxisRaw("Horizontal"); 
         float vInput = Input.GetAxisRaw("Vertical");
 
+        //Create vector describing how much we want to move
         Vector3 moveVector = (transform.forward * vInput) + (transform.right * hInput);
 
-        if (moveVector.magnitude > 1f)  //Inga måsvingar när if statement endast är en rad (normaliserar fart på karaktär)
+        if (moveVector.magnitude > 1f)  //Inga måsvingar när if statement endast är en rad (Ensuring MoveVector is not above 1 by normalising)
             moveVector = moveVector.normalized;
 
         moveVector *= moveSpeed;
 
-        //kollar om man står på marken
+        //Check if charakter is on ground
         grounded = Physics.Raycast(transform.position, Vector3.down, (playerHeight * 0.5f) + 0.2f, whatIsGround);
 
+        //Move character
         float verticalSpeed = rb.linearVelocity.y;
 
         //om man står på marken kan du gå

@@ -29,9 +29,11 @@ public class LookPivotCamera : MonoBehaviour
     
     void Update()
     {
+        // Get usable mouse inputs
         float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
         float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
 
+        //Check if mouse drag
         if (Input.GetMouseButton(0))
         {
             Cursor.visible = false;
@@ -47,6 +49,7 @@ public class LookPivotCamera : MonoBehaviour
             Cursor.lockState = CursorLockMode.None; 
         }
 
+        // Rotate camera
         xCurrent = Mathf.SmoothDamp(xCurrent, xTarget, ref xCurrentVelocity, smoothTime);
         yCurrent = Mathf.SmoothDamp(yCurrent, yTarget, ref yCurrentVelocity, smoothTime);
 
