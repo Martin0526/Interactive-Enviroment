@@ -18,6 +18,7 @@ public class MoveFirstPersonCamera : MonoBehaviour
 
     bool grounded;
 
+    public cameraSwitch manager = new cameraSwitch();
 
     void Start()
     {
@@ -48,7 +49,7 @@ public class MoveFirstPersonCamera : MonoBehaviour
         float verticalSpeed = rb.linearVelocity.y;
 
         //om man står på marken kan du gå
-        if (grounded)
+        if (grounded && manager.Manager == 0)
             rb.linearVelocity = new Vector3(moveVector.x, verticalSpeed, moveVector.z);
 
     }

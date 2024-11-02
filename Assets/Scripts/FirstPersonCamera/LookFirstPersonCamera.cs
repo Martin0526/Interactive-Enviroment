@@ -16,10 +16,12 @@ public class LookFirstPersonCamera : MonoBehaviour
     float xRotation;
     float yRotation;
 
+    public cameraSwitch manager = new cameraSwitch ();
 
     //Lock mouse & hide it, Set camera to eye height
     void Start()
     {
+        if (manager.Manager == 0)
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
@@ -32,6 +34,14 @@ public class LookFirstPersonCamera : MonoBehaviour
 
     void Update()
     {
+
+        if (manager.Manager == 0)
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
+
         // Create usable mouse movement inputs
         float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
         float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;

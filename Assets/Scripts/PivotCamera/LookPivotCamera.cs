@@ -18,6 +18,7 @@ public class LookPivotCamera : MonoBehaviour
     float xCurrentVelocity;
     float yCurrentVelocity;
 
+    public cameraSwitch manager = new cameraSwitch();
 
     //Making sure camera doesnt freak out at start
     void Start()
@@ -33,21 +34,21 @@ public class LookPivotCamera : MonoBehaviour
         float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
         float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
 
+        if (manager.Manager == 1)
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+
         //Check if mouse drag
         if (Input.GetMouseButton(0))
         {
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
 
             xTarget += mouseX;
             yTarget -= mouseY;
 
         }
-        else
-        { 
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None; 
-        }
+
 
         // Rotate camera
         xCurrent = Mathf.SmoothDamp(xCurrent, xTarget, ref xCurrentVelocity, smoothTime);
