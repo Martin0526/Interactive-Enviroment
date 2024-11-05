@@ -18,6 +18,7 @@ public class LookPivotCamera : MonoBehaviour
     float xCurrentVelocity;
     float yCurrentVelocity;
 
+
     public cameraSwitch manager = new cameraSwitch();
 
     //Making sure camera doesnt freak out at start

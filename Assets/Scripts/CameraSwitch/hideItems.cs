@@ -5,16 +5,19 @@ public class hideItems : MonoBehaviour
 
     public cameraSwitch manager = new cameraSwitch();
 
-    public GameObject item;
+    public GameObject[] item;
 
     void Update()
     {
-        if (manager.Manager == 0)
-            item.SetActive(false);
 
+        for (int idx = 0; idx < item.Length; idx++) 
+        {
+            GameObject obj = item[idx];
+            if (manager.Manager == 0)
+                obj.SetActive(false);
 
-        if (manager.Manager == 1)
-            item.SetActive(true);
-
+            if (manager.Manager == 1)
+                obj.SetActive(true);
+        }
     }
 }
