@@ -5,6 +5,7 @@ public class LookPivotCamera : MonoBehaviour
 
     public float sensX = 500f;
     public float sensY = 500f;
+    public float ZoomSens = 50f;
 
     public float smoothTime = 0.1f;
 
@@ -15,9 +16,10 @@ public class LookPivotCamera : MonoBehaviour
     float xTarget;
     float yTarget;
 
+
     float xCurrentVelocity;
     float yCurrentVelocity;
-
+ 
 
     public cameraSwitch manager = new cameraSwitch();
 
@@ -26,6 +28,7 @@ public class LookPivotCamera : MonoBehaviour
     {
         xTarget = xCurrent;    
         yTarget = yCurrent;    
+  
     }
 
     
@@ -34,6 +37,7 @@ public class LookPivotCamera : MonoBehaviour
         // Get usable mouse inputs
         float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
         float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
+        float mouseZ = Input.GetAxisRaw("Mouse ScrollWheel") * Time.deltaTime * ZoomSens;
 
         if (manager.Manager == 1)
         {
@@ -48,6 +52,11 @@ public class LookPivotCamera : MonoBehaviour
             xTarget += mouseX;
             yTarget -= mouseY;
 
+        }
+
+        if ((mouseZ) != 0)
+        {
+            transform.position += this.transform.forward * mouseZ * ZoomSens;
         }
 
 
