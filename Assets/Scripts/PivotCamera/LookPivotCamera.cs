@@ -1,13 +1,21 @@
+using Unity.Hierarchy;
 using UnityEngine;
 
 public class LookPivotCamera : MonoBehaviour
 {
-
+    [Header("Camera Pivot")]
     public float sensX = 500f;
     public float sensY = 500f;
-    public float ZoomSens = 50f;
-
     public float smoothTime = 0.1f;
+
+    [Header("Camera Zoom")]
+    public Camera cam;
+    public Transform Target;
+    public float MinZoom = 1.0f;
+    public float MaxZoom = 6.0f;
+    public float ZoomSpeed = 470f;
+
+   
 
     //private variables since "public" was left out
     float xCurrent;
@@ -16,10 +24,10 @@ public class LookPivotCamera : MonoBehaviour
     float xTarget;
     float yTarget;
 
-
     float xCurrentVelocity;
     float yCurrentVelocity;
- 
+
+    float currentZoom;
 
     public cameraSwitch manager = new cameraSwitch();
 
@@ -27,8 +35,9 @@ public class LookPivotCamera : MonoBehaviour
     void Start()
     {
         xTarget = xCurrent;    
-        yTarget = yCurrent;    
-  
+        yTarget = yCurrent;
+
+        currentZoom = Vector3.Distance(cam.transform.position, Target.position);
     }
 
     
@@ -37,7 +46,7 @@ public class LookPivotCamera : MonoBehaviour
         // Get usable mouse inputs
         float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
         float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
-        float mouseZ = Input.GetAxisRaw("Mouse ScrollWheel") * Time.deltaTime * ZoomSens;
+        float scrollInput = Input.GetAxis("Mouse ScrollWheel") * Time.deltaTime ;
 
         if (manager.Manager == 1)
         {
@@ -54,9 +63,14 @@ public class LookPivotCamera : MonoBehaviour
 
         }
 
-        if ((mouseZ) != 0)
+        if ((scrollInput) != 0)
         {
-            transform.position += this.transform.forward * mouseZ * ZoomSens;
+
+            currentZoom -= scrollInput * ZoomSpeed;
+            currentZoom = Mathf.Clamp(currentZoom, MinZoom, MaxZoom);
+
+            cam.transform.position = Target.position - cam.transform.forward * currentZoom;
+
         }
 
 
