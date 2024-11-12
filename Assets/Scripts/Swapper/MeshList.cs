@@ -41,7 +41,7 @@ public class Meshlist : MonoBehaviour
 
         selectedIndex++;
 
-        if (selectedIndex >= SceneObjectList.Length)
+        if (selectedIndex > SceneObjectList.Length-1)
             selectedIndex = 0;
 
 
@@ -54,5 +54,23 @@ public class Meshlist : MonoBehaviour
         
     
     }
+
+    public void ChangeMeshBackwards()
+    {
+        selectedIndex--;
+
+        if (selectedIndex < 0)
+            selectedIndex = SceneObjectList.Length-1;
+
+
+        for (int idx = 0; idx < SceneObjectList.Length; idx++)
+        {
+            GameObject obj = SceneObjectList[idx];
+            obj.SetActive(idx == selectedIndex);
+        }
+    }
+
+
+
 
 }

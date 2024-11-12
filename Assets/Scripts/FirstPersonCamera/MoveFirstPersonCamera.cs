@@ -42,7 +42,7 @@ public class MoveFirstPersonCamera : MonoBehaviour
 
         moveVector *= moveSpeed;
 
-        //Check if charakter is on ground
+        //Check if character is on ground
         grounded = Physics.Raycast(transform.position, Vector3.down, (playerHeight * 0.5f) + 0.2f, whatIsGround);
 
         //Move character
