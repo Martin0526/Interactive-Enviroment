@@ -4,13 +4,15 @@ public class pauseMeny : MonoBehaviour
 {
 
     public Canvas pauseMenu;
+    public Canvas controlMenu;
     public cameraSwitch manager = new cameraSwitch();
 
-    //Private Variables
+    
     public bool pauseActive = false;
 
     void Start()
     {
+        controlMenu.enabled = false;
         pauseMenu.enabled = false;
         pauseActive = false;
     }
@@ -20,10 +22,9 @@ public class pauseMeny : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
+            
             pauseMenu.enabled = true;
             pauseActive = true;
-            //Cursor.visible = true;
-            //Cursor.lockState = CursorLockMode.None;
         }
     }
 
@@ -32,6 +33,21 @@ public class pauseMeny : MonoBehaviour
         pauseMenu.enabled = false;
         pauseActive = false;
     }
+
+    public void control()
+    {
+        controlMenu.enabled = true;
+        pauseMenu.enabled = false;
+        
+    }
+
+    public void backControl()
+    {
+        controlMenu.enabled = false;
+        pauseMenu.enabled = true;
+        
+    }
+
 
 
     public void exit()
