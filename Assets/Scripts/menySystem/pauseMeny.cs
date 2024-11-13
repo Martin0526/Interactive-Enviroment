@@ -22,9 +22,8 @@ public class pauseMeny : MonoBehaviour
         {
             pauseMenu.enabled = true;
             pauseActive = true;
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-            Debug.Log(pauseActive);
+            //Cursor.visible = true;
+            //Cursor.lockState = CursorLockMode.None;
         }
     }
 
@@ -32,7 +31,6 @@ public class pauseMeny : MonoBehaviour
     {
         pauseMenu.enabled = false;
         pauseActive = false;
-        Debug.Log(pauseActive);
     }
 
 

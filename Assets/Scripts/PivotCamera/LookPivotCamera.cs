@@ -31,6 +31,7 @@ public class LookPivotCamera : MonoBehaviour
     Vector3 currentCamPos;
 
     public cameraSwitch manager = new cameraSwitch();
+    public pauseMeny pause = new pauseMeny();
 
     //Making sure camera doesnt freak out at start
     void Start()
@@ -44,7 +45,7 @@ public class LookPivotCamera : MonoBehaviour
         cam.transform.position = currentCamPos;
     }
 
-    
+
     void Update()
     {
         // Get usable mouse inputs
@@ -57,33 +58,19 @@ public class LookPivotCamera : MonoBehaviour
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
-       
-        
-        if (Input.GetKeyDown(KeyCode.C) && manager.Manager == 1)
-        {
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-        
-
-
 
         //Check if mouse drag
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && pause.pauseActive == false)
         {
-
             xTarget += mouseX;
             yTarget -= mouseY;
-
         }
 
-        if ((scrollInput) != 0)
+        if ((scrollInput) != 0 && pause.pauseActive == false)
         {
 
             currentZoom -= scrollInput * ZoomSpeed;
-            currentZoom = Mathf.Clamp(currentZoom, MinZoom, MaxZoom);
-
-            //cam.transform.position = Target.position - cam.transform.forward * currentZoom;
+            currentZoom = Mathf.Clamp(currentZoom, MinZoom, MaxZoom );
 
         }
 

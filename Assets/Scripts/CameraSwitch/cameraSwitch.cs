@@ -7,6 +7,13 @@ public class cameraSwitch : MonoBehaviour
     public GameObject PivotCamera;
     public int Manager;
 
+    private void Start()
+    {
+       Cursor.visible = false;
+       Cursor.lockState = CursorLockMode.Locked;
+    }
+
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.C))
@@ -34,6 +41,9 @@ public class cameraSwitch : MonoBehaviour
     {
         FirstPerson.SetActive(true);
         PivotCamera.SetActive(false);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
     }
 
 
@@ -41,6 +51,9 @@ public class cameraSwitch : MonoBehaviour
     {
         FirstPerson.SetActive(false);
         PivotCamera.SetActive(true);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
     }
 
 }

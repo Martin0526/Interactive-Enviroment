@@ -1632,7 +1632,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3102358e698a6d448c88da437008e01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenu: {fileID: 1225710321}
+  pauseMenu: {fileID: 395656351}
   manager: {fileID: 2019675308}
   pauseActive: 0
 --- !u!1 &461591533
@@ -3545,6 +3545,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2015763365}
     - target: {fileID: 376572942880464114, guid: 233e0bbb0f837924aac3f98011d79116, type: 3}
+      propertyPath: pause
+      value: 
+      objectReference: {fileID: 395656353}
+    - target: {fileID: 376572942880464114, guid: 233e0bbb0f837924aac3f98011d79116, type: 3}
       propertyPath: sensZ
       value: 10
       objectReference: {fileID: 0}
@@ -4113,6 +4117,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6098552418078132395, guid: 3769ee2ce626eb143aa83c93e38139e3, type: 3}
+      propertyPath: pause
+      value: 
+      objectReference: {fileID: 395656353}
+    - target: {fileID: 6098552418078132395, guid: 3769ee2ce626eb143aa83c93e38139e3, type: 3}
       propertyPath: manager
       value: 
       objectReference: {fileID: 2019675308}
@@ -4156,6 +4164,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6802991231063287967, guid: 3769ee2ce626eb143aa83c93e38139e3, type: 3}
+      propertyPath: pause
+      value: 
+      objectReference: {fileID: 395656353}
     - target: {fileID: 6802991231063287967, guid: 3769ee2ce626eb143aa83c93e38139e3, type: 3}
       propertyPath: manager
       value: 

@@ -12,6 +12,7 @@ public class MoveFirstPersonCamera : MonoBehaviour
     [Header("Movement")]
     public float moveSpeed = 5f;
 
+
     [Header("Ground Check")]
     public float playerHeight = 2f;
     public LayerMask whatIsGround;
@@ -19,6 +20,8 @@ public class MoveFirstPersonCamera : MonoBehaviour
     bool grounded;
 
     public cameraSwitch manager = new cameraSwitch();
+    public pauseMeny pause = new pauseMeny();
+
 
     void Start()
     {
@@ -50,7 +53,9 @@ public class MoveFirstPersonCamera : MonoBehaviour
 
         //om man står på marken kan du gå
         if (grounded && manager.Manager == 0)
-            rb.linearVelocity = new Vector3(moveVector.x, verticalSpeed, moveVector.z);
-
+        { 
+            if (pause.pauseActive == false) 
+                rb.linearVelocity = new Vector3(moveVector.x, verticalSpeed, moveVector.z);
+        }
     }
 }

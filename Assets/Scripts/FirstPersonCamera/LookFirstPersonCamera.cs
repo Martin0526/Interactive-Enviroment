@@ -17,15 +17,11 @@ public class LookFirstPersonCamera : MonoBehaviour
     float yRotation;
 
     public cameraSwitch manager = new cameraSwitch ();
-    public pauseMeny pauseActive = new pauseMeny ();
+    public pauseMeny pause = new pauseMeny ();
 
     //Lock mouse & hide it, Set camera to eye height
     void Start()
     {
-        if (manager.Manager == 0 && pauseActive == false)
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-
         Vector3 cameraTargetPosition = transform.position + (Vector3.up * eyeHeight);
         camera.position = cameraTargetPosition;
     }
@@ -36,35 +32,31 @@ public class LookFirstPersonCamera : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
+    public void showMouse()
+    {
+
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        
+    }
+
  
 
     void Update()
     {
 
-        if (manager.Manager == 0)
-        { 
-            if (pauseActive == false)
-            { 
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-            }
-        }
-        else
-        {
-            if (pauseActive == true)
-            {
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
-            }
-        }
-
+        if (Input.GetKeyDown(KeyCode.P))
+            showMouse();
 
         // Create usable mouse movement inputs
-        float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
-        float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
+        if (pause.pauseActive == false)
+        {
+            float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
+            float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
 
-        yRotation += mouseX;
-        xRotation -= mouseY;
+            yRotation += mouseX;
+            xRotation -= mouseY;
+        }
 
         //Prevent camera turning upside down by clamping it
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
@@ -72,11 +64,11 @@ public class LookFirstPersonCamera : MonoBehaviour
         //Set rotation of camera and character
         transform.eulerAngles = new Vector3(0f, yRotation, 0f);
         camera.eulerAngles = new Vector3(xRotation, yRotation, 0f);
-
+        
         // Move camera
         Vector3 cameraTargetPosition = transform.position + (Vector3.up * eyeHeight);
         camera.position = Vector3.Lerp(camera.position, cameraTargetPosition, 0.5f);
-
+      
 
     }
 }
