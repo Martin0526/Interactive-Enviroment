@@ -21,7 +21,7 @@ public class MaterialSwapper : MonoBehaviour
         MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
         
         currentMat++;
-        if (currentMat >= MaterialList.Length)
+        if (currentMat > MaterialList.Length-1)
             currentMat = 0;
 
         for (int idx = 0; idx < MaterialList.Length; idx++)
@@ -30,12 +30,6 @@ public class MaterialSwapper : MonoBehaviour
             obj.GetComponent<MeshRenderer>().material = MaterialList[currentMat];
             //meshRenderer.material = MaterialList[currentMat];
         }
-
-
-
-
-
-
 
         //MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
 
@@ -46,6 +40,23 @@ public class MaterialSwapper : MonoBehaviour
         //else
         //    meshRenderer.material = oldMaterial;
     }
+
+    public void ChangeMatBackwards()
+    {
+        currentMat--;
+
+        if (currentMat < 0)
+            currentMat = SceneObjectList.Length - 1;
+
+
+        for (int idx = 0; idx < MaterialList.Length; idx++)
+        {
+            GameObject obj = SceneObjectList[idx];
+            obj.GetComponent<MeshRenderer>().material = MaterialList[currentMat];
+        }
+    }
+
+
 
 
 
