@@ -25,6 +25,15 @@ public class light_Controls : MonoBehaviour
     void Start()
     {
         RenderSettings.skybox = skyboxMatList[0];
+        light1.colorTemperature = light1.colorTemperature;
+        light2.colorTemperature = light2.colorTemperature;
+        light3.colorTemperature = light3.colorTemperature;
+
+        light1.intensity = light1.intensity;
+        light2.intensity = light2.intensity;
+        light3.intensity = light3.intensity;
+
+        selectedIndex = 0;
     }
 
     void Update()

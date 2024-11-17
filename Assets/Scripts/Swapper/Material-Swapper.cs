@@ -46,7 +46,7 @@ public class MaterialSwapper : MonoBehaviour
         currentMat--;
 
         if (currentMat < 0)
-            currentMat = SceneObjectList.Length - 1;
+            currentMat = MaterialList.Length - 1;
 
 
         for (int idx = 0; idx < MaterialList.Length; idx++)

@@ -5,6 +5,7 @@ public class pauseMeny : MonoBehaviour
 
     public Canvas pauseMenu;
     public Canvas controlMenu;
+    public GameObject Menu;
     public cameraSwitch manager = new cameraSwitch();
 
     
@@ -22,7 +23,7 @@ public class pauseMeny : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            
+            Menu.gameObject.SetActive(true);
             pauseMenu.enabled = true;
             pauseActive = true;
         }
@@ -30,7 +31,8 @@ public class pauseMeny : MonoBehaviour
 
     public void unPause()
     {
-        pauseMenu.enabled = false;
+        Menu.gameObject.SetActive(false);
+        //pauseMenu.enabled = false;
         pauseActive = false;
     }
 
